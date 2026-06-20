@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #2B2D42;
+  background-color: #FFF8F0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 3px solid #FFC857;
+  outline-offset: 2px;
+}
+
+/* Postcard card style used across destination/package cards */
+.postcard {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(43, 45, 66, 0.08);
+  background: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.postcard:hover {
+  transform: translateY(-4px) rotate(-0.3deg);
+  box-shadow: 0 14px 30px -10px rgba(43, 45, 66, 0.25);
+}
+
+/* Dotted route line motif */
+.dotted-route {
+  stroke-dasharray: 2 8;
+  stroke-linecap: round;
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-image: radial-gradient(circle, currentColor 1.5px, transparent 1.6px);
+  background-size: 6px 2px;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
