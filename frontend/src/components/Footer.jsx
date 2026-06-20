@@ -35,9 +35,9 @@ export default function Footer() {
         <div>
           <h4 className="font-display font-semibold text-marigold mb-4">Get in Touch</h4>
           <ul className="space-y-2 text-sm text-white/80">
-            <li>📞 +91 98765 43210</li>
-            <li>✉️ booking@harthikatravels.in</li>
-            <li>📍 Madurai, Tamil Nadu, India</li>
+            <li>📞 +91 89406 13027</li>
+            <li>✉️ rameshrajvm88@gmail.com</li>
+            <li>📍 Coimbatore, Tamil Nadu, India</li>
           </ul>
         </div>
       </div>

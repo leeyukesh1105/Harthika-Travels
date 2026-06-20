@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WHATSAPP_NUMBER = '919876543210'; // Replace with real WhatsApp business number
+const WHATSAPP_NUMBER = '918940613027'; // Harthika Travels WhatsApp number
 const DEFAULT_MESSAGE = "Hi Harthika Travels! I'd like to know more about your Tamil Nadu tour packages.";
 
 export default function WhatsAppButton() {

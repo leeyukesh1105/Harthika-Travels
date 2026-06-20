@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { api } from '../api/client';
 
-const WHATSAPP_NUMBER = '919876543210';
-const PHONE_DISPLAY = '+91 98765 43210';
+const WHATSAPP_NUMBER = '918940613027';
+const PHONE_DISPLAY = '+91 89406 13027';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -96,7 +96,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="font-semibold text-ink">Email Us</p>
-              <p className="text-sm text-ink/60">booking@harthikatravels.in</p>
+              <p className="text-sm text-ink/60">rameshrajvm88@gmail.com</p>
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="font-semibold text-ink">Visit Us</p>
-              <p className="text-sm text-ink/60">Madurai, Tamil Nadu, India</p>
+              <p className="text-sm text-ink/60">Coimbatore, Tamil Nadu, India</p>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full rounded-lg border border-ink/15 px-4 py-2.5 focus-ring focus:border-teal"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 89406 13027"
                 />
               </div>
               <div className="sm:col-span-1">

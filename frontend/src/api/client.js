@@ -1,9 +1,7 @@
 // In local dev, this stays '/api' and Vite's proxy (vite.config.js) forwards it to localhost:5000.
 // In production, set VITE_API_URL (e.g. https://harthika-backend.onrender.com/api) as an
 // environment variable on your hosting provider (Render/Vercel/Netlify static site settings).
-// build-marker: v2
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
-console.log('[Harthika] API_BASE resolved to:', API_BASE);
 
 function getToken() {
   return localStorage.getItem('harthika_admin_token');
