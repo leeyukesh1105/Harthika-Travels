@@ -110,13 +110,51 @@ harthika-travels/
 
 ---
 
-## Deploying for real customers
+## Deploying for real customers (Render, free tier)
 
-This is currently set up for **local development**. To go live you'll want to:
-1. Host the backend (e.g. on a VPS, Render, or Railway) — note SQLite works fine for low-to-moderate traffic; for higher traffic consider migrating to PostgreSQL.
-2. Build the frontend for production: `cd frontend && npm run build` (outputs to `frontend/dist`), then host the static files (e.g. Netlify, Vercel, or served by the same backend).
-3. Update the frontend's API base URL if backend and frontend are hosted on different domains (currently uses a relative `/api` path via Vite's dev proxy — you'll need to either reverse-proxy `/api` in production too, or set an absolute API URL).
-4. Set up HTTPS, and move all secrets (`JWT_SECRET`, admin password) to your hosting provider's environment variable settings rather than the `.env` file.
+This project is split into two folders so it deploys cleanly as two separate Render services.
+
+### A. Push to GitHub
+Push the whole `harthika-travels` folder to a GitHub repo. Note: GitHub's default
+Node `.gitignore` often excludes `.env` — don't rely on it being in the repo;
+set secrets directly in Render instead (see below).
+
+### B. Deploy the backend
+1. On [render.com](https://render.com), click **New +** → **Web Service**, connect your GitHub repo.
+2. Settings:
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install && npm run seed`
+   - **Start Command**: `npm start`
+3. Add Environment Variables in the Render dashboard (don't rely on `.env`):
+   - `PORT` = `5000`
+   - `JWT_SECRET` = a long random string
+   - `ADMIN_USERNAME` = your choice
+   - `ADMIN_PASSWORD` = a strong password
+4. Deploy. Render gives you a URL like `https://harthika-backend.onrender.com`.
+5. Verify it works: visit `https://harthika-backend.onrender.com/api/health` — expect `{"status":"ok",...}`.
+
+> ⚠️ Render's free tier has an ephemeral filesystem — the SQLite file can reset on
+> redeploys/restarts. Fine for demos; for real customer data, either upgrade to a
+> paid instance with a persistent disk, or migrate to a managed Postgres database.
+
+### C. Deploy the frontend
+1. On Render, click **New +** → **Static Site**, connect the same repo.
+2. Settings:
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist`
+3. Add an Environment Variable:
+   - `VITE_API_URL` = `https://harthika-backend.onrender.com/api` (use your actual backend URL from step B, with `/api` on the end)
+4. Deploy. Render gives you your live site URL, e.g. `https://harthika-travels.onrender.com` — **this is the link you share with people**.
+
+### D. Re-seed or update later
+Any time you push new commits to GitHub, Render auto-redeploys both services
+(if auto-deploy is enabled, which it is by default).
+
+### Notes
+- HTTPS is automatic on Render — no extra setup needed.
+- Free tier services "spin down" after inactivity and take ~30–60 seconds to wake on
+  the next visit — normal for free hosting, just means the first load might feel slow.
 
 ---
 
